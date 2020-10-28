@@ -11,9 +11,7 @@ body {
     flex-direction: column;
     padding-left: 200px;
 }
-.travel-container>*{
-    
-}
+
 .flex{
     display: flex;
 }
