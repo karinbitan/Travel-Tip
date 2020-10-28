@@ -1,30 +1,26 @@
 //object
-import {utilService} from 'util-service.js';
+import { utilService } from './util-service.js';
 
+const gLocations = [];
 
-    const gLocation = [{
-        id: utilService.makeId(),
-        name: getName(locationName),
-        lat: getLat(),
-        lng: getLng(),
-        weather,
-        createdAt: utilService.getFullDate(),
-        updatedAt: utilService.getFullDate()
-    }]
+// const gLocation = [{
+//     id: utilService.makeId(),
+//     name,
+//     lat,
+//     lng,
+//     weather,
+//     createdAt: utilService.getFullDate(),
+//     updatedAt: utilService.getFullDate()
+// }]
 
+// function createLocation
 
-
-    //get name from user- need to write function at controller
-    function getName(locationName){
-        return locationName;
-    }
-
-    function getLat(lat){
-        return lat;
-    }
-
-    function getLng(lng){
-        return lng;
-    }
-
-
+function setLocation(locationName, locationLat, locationLng) {
+    gLocation[0].name = locationName;
+    gLocation[0].lat = locationLat;
+    gLocation[0].lng = locationLng;
+}
+export const locationService = {
+    // gLocation,
+    setLocation
+}
