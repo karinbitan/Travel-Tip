@@ -1,9 +1,8 @@
-'use strict'
-weather()
-function weather() {
-    return axios.get('api.openweathermap.org/data/2.5/weather?q=London&appid=f5b7f5d61c35c7cc714d7e78b327716d')
-        .then(res => console.log(res.data))
-        // .catch(err => console.log(err))
+export const weatherService = {
+    weather
 }
 
-// ('api.openweathermap.org/data/2.5/weather?q={city name}&appid=f5b7f5d61c35c7cc714d7e78b327716d')
+function weather(lat,lon) {
+    return axios.get(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&APPID=f5b7f5d61c35c7cc714d7e78b327716d`)
+        .then(res => console.log(res.data))
+}
