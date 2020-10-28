@@ -1,6 +1,7 @@
 import { mapService } from './services/mapService.js'
 // import { mapService } from './services/locationService.js'
 
+
 var gMap;
 console.log('Main!');
 
