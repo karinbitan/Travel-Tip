@@ -9,15 +9,19 @@
 </head>
 
 <body>
-    <div class="travel-container">
+    <div class="travel-container flex">
         <h1>Travel Tip</h1>
-        <button class="location-btn">Enter location</button>
-        <button class="go-btn">GO</button>
-        <button class="myLocation-btn">My Location</button>
-        <h3>Location</h3><span class="location"></span>
-        <button>Copy Location</button>
-        <section class="location-table"></section>
-        <section class="location-map"></section>
+        <div class="main-container flex">
+            <input type="text" class="location-btn"></input>
+            <button class="go-btn">GO</button>
+            <button class="myLocation-btn">My Location</button>
+            <h3>Location</h3><span class="location"></span>
+            <button>Copy Location</button>
+        </div>
+        <div class="map-container flex">
+            <section class="location-table"></section>
+            <div id="map" class="location-map"></div>
+        </div>
     </div>
 
     <script type="module" src="js/mapController.js"></script>

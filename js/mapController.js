@@ -1,4 +1,5 @@
 import { mapService } from './services/mapService.js'
+// import { mapService } from './services/locationService.js'
 
 var gMap;
 console.log('Main!');
@@ -24,7 +25,7 @@ window.onload = () => {
         })
 }
 
-document.querySelector('.btn').addEventListener('click', (ev) => {
+document.querySelector('.go-btn').addEventListener('click', (ev) => {
     console.log('Aha!', ev.target);
     panTo(35.6895, 139.6917);
 })
@@ -41,6 +42,26 @@ export function initMap(lat = 32.0749831, lng = 34.9120554) {
                 zoom: 15
             })
             console.log('Map!', gMap);
+            // Create the initial InfoWindow.
+            let infoWindow = new google.maps.InfoWindow({
+              content: "Click the map to get Lat/Lng!",
+              position: gMap.center,
+            });
+            infoWindow.open(gMap);
+            // Configure the click listener.
+            gMap.addListener("click", (mapsMouseEvent) => {
+                console.log(mapsMouseEvent);
+              // Close the current InfoWindow.
+              infoWindow.close();
+              // Create a new InfoWindow.
+              infoWindow = new google.maps.InfoWindow({
+                position: mapsMouseEvent.latLng,
+              });
+              infoWindow.setContent(
+                JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
+              );
+              infoWindow.open(gMap);
+            });
         })
 }
 
@@ -69,7 +90,7 @@ function getPosition() {
 
 function _connectGoogleApi() {
     if (window.google) return Promise.resolve()
-    const API_KEY = ''; //TODO: Enter your API Key
+    const API_KEY = 'AIzaSyDlZpUHe3SXfAqlIJaalLGphEskyZlXt3Q'; 
     var elGoogleApi = document.createElement('script');
     elGoogleApi.src = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}`;
     elGoogleApi.async = true;

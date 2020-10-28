@@ -8,10 +8,22 @@ body {
 
 .travel-container{
     border: 1px solid black;
+    flex-direction: column;
+    padding-left: 200px;
 }
-
+.travel-container>*{
+    
+}
+.flex{
+    display: flex;
+}
 .location-table{
     border: 1px solid black;
     width: 100px;
     height: 100px;
+}
+.travel-container .location-map{
+width: 300px;
+height: 300px;
+
 }
