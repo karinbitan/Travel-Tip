@@ -49,7 +49,8 @@ export const locationService = {
     gLocations,
     createLocation,
     getLocations,
-    setLocation
+    setLocation,
+    STORAGE_KEY
 }
 
 console.log(gLocations);

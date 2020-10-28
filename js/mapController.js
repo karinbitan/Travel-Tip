@@ -1,3 +1,4 @@
+import { storageService } from './services/localStorage.js';
 import { mapService } from './services/mapService.js'
 import { weatherService } from './services/weatherService.js'
 import { locationService } from './services/locationService.js'
@@ -12,7 +13,14 @@ mapService.getLocs()
 
 
 window.onload = () => {
-    initMap()
+    var locations = storageService.loadFromStorage(locationService.STORAGE_KEY);
+    var lat = 32.0749831;
+    var lng = 34.9120554;
+    if (locations.length) {
+        lat = locations[locations.length - 1].lat;
+        lng = locations[locations.length - 1].lng;
+    }
+    initMap(lat, lng)
         .then(() => {
 
             addMarker({ lat: 32.0749831, lng: 34.9120554 });
@@ -27,7 +35,7 @@ window.onload = () => {
         .catch(err => {
             console.log('err!!!', err);
         })
-        renderLocations();
+    renderLocations();
 }
 
 document.querySelector('.go-btn').addEventListener('click', (ev) => {
@@ -119,21 +127,21 @@ function onSaveLocation() {
     var locationName = document.getElementById('location-name').value;
     console.log(locationName, locationLng, locationLat)
     locationService.setLocation(locationName, locationLat, locationLng);
-    var locationName = document.getElementById('location-name').value = '';  
+    var locationName = document.getElementById('location-name').value = '';
     renderLocations();
 }
 
 renderWeather()
-function renderWeather(){
-   let htmlWeather = ''
+function renderWeather() {
+    let htmlWeather = ''
     weatherService.getweather(11.22, 22.11)
-    .then(weatherPlace => {
-        console.log(weatherPlace);
-        console.log(weatherPlace.weather[0].icon);
-        htmlWeather += `<h2>Weather today</h2><p>${weatherPlace.name},${weatherPlace.sys.country},${weatherPlace.weather[0].description}</p>
-        <p><span class="deg">${weatherPlace.main.temp-273.15}&deg</span>,tempeture from ${weatherPlace.main.temp_min-273.15} to ${weatherPlace.main.temp_max-273.15}&deg, wind ${weatherPlace.wind.speed}m/s.</p>`
-        document.querySelector('.weather-container').innerHTML = htmlWeather;
-    })
+        .then(weatherPlace => {
+            console.log(weatherPlace);
+            console.log(weatherPlace.weather[0].icon);
+            htmlWeather += `<h2>Weather today</h2><p>${weatherPlace.name},${weatherPlace.sys.country},${weatherPlace.weather[0].description}</p>
+        <p><span class="deg">${weatherPlace.main.temp - 273.15}&deg</span>,tempeture from ${weatherPlace.main.temp_min - 273.15} to ${weatherPlace.main.temp_max - 273.15}&deg, wind ${weatherPlace.wind.speed}m/s.</p>`
+            document.querySelector('.weather-container').innerHTML = htmlWeather;
+        })
 }
 
 
