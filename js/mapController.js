@@ -1,5 +1,5 @@
 import { mapService } from './services/mapService.js'
-import { weatherService } from './services/weatherService.js'
+// import { weatherService } from './services/weatherService.js'
 
 import { locationService } from './services/locationService.js'
 
@@ -27,6 +27,7 @@ window.onload = () => {
         .catch(err => {
             console.log('err!!!', err);
         })
+        renderLocations();
 }
 
 document.querySelector('.go-btn').addEventListener('click', (ev) => {
@@ -118,4 +119,17 @@ function onSaveLocation() {
     var locationName = document.getElementById('location-name').value;
     console.log(locationName, locationLng, locationLat)
     locationService.setLocation(locationName, locationLat, locationLng);
+    renderLocations();
+}
+
+function renderLocations() {
+    var locations = locationService.getLocations();
+    var strHTMLs = locations.map((location) => {
+        return `
+        <ul>
+        <li>${location.name}</li>
+        </ul>
+        `
+    })
+    document.querySelector('.location-table').innerHTML = strHTMLs.join('');
 }
