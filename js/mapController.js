@@ -27,6 +27,7 @@ window.onload = () => {
         .catch(err => {
             console.log('err!!!', err);
         })
+        renderLocations();
 }
 
 document.querySelector('.go-btn').addEventListener('click', (ev) => {
@@ -134,4 +135,14 @@ function renderWeather(){
 }
 
 
-
+function renderLocations() {
+    var locations = locationService.getLocations();
+    var strHTMLs = locations.map((location) => {
+        return `
+        <ul>
+        <li>${location.name}</li>
+        </ul>
+        `
+    })
+    document.querySelector('.location-table').innerHTML = strHTMLs.join('');
+}
