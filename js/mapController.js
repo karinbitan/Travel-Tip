@@ -1,6 +1,7 @@
 import { mapService } from './services/mapService.js'
 import { weatherService } from './services/weatherService.js'
 
+import { locationService } from './services/locationService.js'
 
 
 var gMap;
@@ -33,6 +34,8 @@ document.querySelector('.go-btn').addEventListener('click', (ev) => {
     panTo(35.6895, 139.6917);
 })
 
+console.log(document.querySelector('.save-location-btn'))
+document.querySelector('.save-location-btn').addEventListener('click', onSaveLocation);
 
 export function initMap(lat = 32.0749831, lng = 34.9120554) {
     console.log('InitMap');
@@ -103,4 +106,16 @@ function _connectGoogleApi() {
         elGoogleApi.onload = resolve;
         elGoogleApi.onerror = () => reject('Google script failed to load')
     })
+}
+
+
+// Locations
+
+function onSaveLocation() {
+    console.log('onSaveLocation');
+    var locationLat = gMap.center.lat();
+    var locationLng = gMap.center.lng();
+    var locationName = document.getElementById('location-name').value;
+    console.log(locationName, locationLng, locationLat)
+    locationService.setLocation(locationName, locationLat, locationLng);
 }

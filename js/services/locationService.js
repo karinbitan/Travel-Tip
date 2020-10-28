@@ -1,30 +1,32 @@
 //object
-import {utilService} from 'util-service.js';
+import { utilService } from './util-service.js';
 
 
-    const gLocation = [{
-        id: utilService.makeId(),
-        name: getName(locationName),
-        lat: getLat(),
-        lng: getLng(),
-        weather,
-        createdAt: utilService.getFullDate(),
-        updatedAt: utilService.getFullDate()
-    }]
+var gLocations = [];
 
-
-
-    //get name from user- need to write function at controller
-    function getName(locationName){
-        return locationName;
+function createLocation(name, lat, lng) {
+    return {
+    id: utilService.makeId(),
+    name,
+    lat,
+    lng,
+    weather,
+    createdAt: utilService.getFullDate(),
+    updatedAt: utilService.getFullDate()
     }
+}
 
-    function getLat(lat){
-        return lat;
-    }
+function setLocation(name, lat, lng) {
+    var location = createLocation(name, lat, lng);
+    gLocations.push(location);
+}
 
-    function getLng(lng){
-        return lng;
-    }
+export const locationService = {
+    gLocations,
+    createLocation,
+    setLocation
+}
 
-
+// function _saveCarsToStorage() {
+//     saveToStorage(STORAGE_KEY, gCars)
+// }
