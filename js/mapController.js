@@ -110,9 +110,9 @@ function _connectGoogleApi() {
 
 function onSaveLocation() {
     console.log('onSaveLocation');
-    var locationLat = gMap.center.lat;
-    var locationLng = gMap.center.lng;
+    var locationLat = gMap.center.lat();
+    var locationLng = gMap.center.lng();
     var locationName = document.getElementById('location-name').value;
-    console.log(locationName)
+    console.log(locationName, locationLng, locationLat)
     locationService.setLocation(locationName, locationLat, locationLng);
 }

@@ -1,26 +1,32 @@
 //object
 import { utilService } from './util-service.js';
 
-const gLocations = [];
 
-// const gLocation = [{
-//     id: utilService.makeId(),
-//     name,
-//     lat,
-//     lng,
-//     weather,
-//     createdAt: utilService.getFullDate(),
-//     updatedAt: utilService.getFullDate()
-// }]
+var gLocations = [];
 
-// function createLocation
-
-function setLocation(locationName, locationLat, locationLng) {
-    gLocation[0].name = locationName;
-    gLocation[0].lat = locationLat;
-    gLocation[0].lng = locationLng;
+function createLocation(name, lat, lng) {
+    return {
+    id: utilService.makeId(),
+    name,
+    lat,
+    lng,
+    weather,
+    createdAt: utilService.getFullDate(),
+    updatedAt: utilService.getFullDate()
+    }
 }
+
+function setLocation(name, lat, lng) {
+    var location = createLocation(name, lat, lng);
+    gLocations.push(location);
+}
+
 export const locationService = {
-    // gLocation,
+    gLocations,
+    createLocation,
     setLocation
 }
+
+// function _saveCarsToStorage() {
+//     saveToStorage(STORAGE_KEY, gCars)
+// }
