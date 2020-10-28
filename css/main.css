@@ -16,8 +16,9 @@ li {
 .travel-container {
     border: 1px solid black;
     width: 700px;
-    height: 600px;
-    margin: auto;
+    margin: 100px auto;
+    padding: 30px;
+    background-color: lightblue;
 }
 
 .location-table {
@@ -30,7 +31,31 @@ li {
     width: 300px;
     height: 300px;
 }
-
+.travel-container .weather-container{
+    border: 1px solid black;
+    margin: 10px;
+    padding: 10px;
+}
+.travel-container .weather-container >*{
+   /* margin-top: 0; */
+   text-align: center;
+}
+.travel-container .weather-container p{
+   font-family: monospace;
+   font-size: 1.2rem;
+}
+.location-btn-container{
+    margin-inline-start: 20px;  
+}
+.modal.location{
+margin-inline-start: 10px;
+}
+    
+button{
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5px;
+}
 /* Helpers */
 
 .flex {

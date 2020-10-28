@@ -13,7 +13,9 @@ mapService.getLocs()
 
 
 window.onload = () => {
+    renderWeather()
     var locations = storageService.loadFromStorage(locationService.STORAGE_KEY);
+    console.log(locations);
     var lat = 32.0749831;
     var lng = 34.9120554;
     if (locations.length) {
@@ -131,15 +133,15 @@ function onSaveLocation() {
     renderLocations();
 }
 
-renderWeather()
+
 function renderWeather() {
     let htmlWeather = ''
     weatherService.getweather(11.22, 22.11)
         .then(weatherPlace => {
             console.log(weatherPlace);
             console.log(weatherPlace.weather[0].icon);
-            htmlWeather += `<h2>Weather today</h2><p>${weatherPlace.name},${weatherPlace.sys.country},${weatherPlace.weather[0].description}</p>
-        <p><span class="deg">${weatherPlace.main.temp - 273.15}&deg</span>,tempeture from ${weatherPlace.main.temp_min - 273.15} to ${weatherPlace.main.temp_max - 273.15}&deg, wind ${weatherPlace.wind.speed}m/s.</p>`
+            htmlWeather += `<h2>Weather today</h2><p>${weatherPlace.name}, ${weatherPlace.sys.country}, ${weatherPlace.weather[0].description}</p>
+        <p><span class="deg">${Math.floor((weatherPlace.main.temp - 273.15))}\u2103</span>, tempeture from ${Math.floor((weatherPlace.main.temp_min - 273.15))} to ${Math.ceil((weatherPlace.main.temp_max - 273.15))}\u2103, wind ${weatherPlace.wind.speed}m/s.</p>`
             document.querySelector('.weather-container').innerHTML = htmlWeather;
         })
 }
