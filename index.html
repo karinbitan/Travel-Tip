@@ -1,13 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Travel Tip</title>
     <link rel="stylesheet" href="css/main.css">
 </head>
+
 <body>
-    <h1>Travel Tip</h1>
-<script src="js/main.js"></script>
+    <div class="travel-container">
+        <h1>Travel Tip</h1>
+        <button class="location-btn">Enter location</button>
+        <button class="go-btn">GO</button>
+        <button class="myLocation-btn">My Location</button>
+        <h3>Location</h3><span class="location"></span>
+        <button>Copy Location</button>
+        <section class="location-table"></section>
+        <section class="location-map"></section>
+    </div>
+
+    <script type="module" src="js/mapController.js"></script>
 </body>
+
 </html>

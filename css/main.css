@@ -1,0 +1,17 @@
+*{
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+.travel-container{
+    border: 1px solid black;
+}
+
+.location-table{
+    border: 1px solid black;
+    width: 100px;
+    height: 100px;
+}
