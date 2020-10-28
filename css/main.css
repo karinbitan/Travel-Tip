@@ -29,3 +29,6 @@ width: 300px;
 height: 300px;
 
 }
+.weather-container{
+    border: 1px solid black; 
+}

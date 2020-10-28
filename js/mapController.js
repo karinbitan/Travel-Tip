@@ -1,6 +1,5 @@
 import { mapService } from './services/mapService.js'
 import { weatherService } from './services/weatherService.js'
-
 import { locationService } from './services/locationService.js'
 
 
@@ -9,6 +8,7 @@ console.log('Main!');
 
 mapService.getLocs()
     .then(locs => console.log('locs', locs))
+
 
 
 window.onload = () => {
@@ -119,3 +119,19 @@ function onSaveLocation() {
     console.log(locationName, locationLng, locationLat)
     locationService.setLocation(locationName, locationLat, locationLng);
 }
+
+renderWeather()
+function renderWeather(){
+   let htmlWeather = ''
+    weatherService.getweather(11.22, 22.11)
+    .then(weatherPlace => {
+        console.log(weatherPlace);
+        console.log(weatherPlace.weather[0].icon);
+        htmlWeather += `<h2>Weather today</h2><p>${weatherPlace.name},${weatherPlace.sys.country},${weatherPlace.weather[0].description}</p>
+        <p><span class="deg">${weatherPlace.main.temp-273.15}&deg</span>,tempeture from ${weatherPlace.main.temp_min-273.15} to ${weatherPlace.main.temp_max-273.15}&deg, wind ${weatherPlace.wind.speed}m/s.</p>`
+        document.querySelector('.weather-container').innerHTML = htmlWeather;
+    })
+}
+
+
+
