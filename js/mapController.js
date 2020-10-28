@@ -119,6 +119,8 @@ function onSaveLocation() {
     var locationName = document.getElementById('location-name').value;
     console.log(locationName, locationLng, locationLat)
     locationService.setLocation(locationName, locationLat, locationLng);
+    var locationName = document.getElementById('location-name').value = '';  
+    renderLocations();
 }
 
 renderWeather()
